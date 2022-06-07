@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MyHeader from './DefaultHeader.vue';
-import './page.css';
+import MyHeader from "./DefaultHeader.vue";
+import "./page.css";
 
 interface Props {
   user: Record<string, unknown>;
@@ -9,9 +9,9 @@ interface Props {
 const props = defineProps<Props>();
 
 interface Emit {
-  (e: 'login'): void;
-  (e: 'logout'): void;
-  (e: 'createAccount'): void;
+  (e: "login"): void;
+  (e: "logout"): void;
+  (e: "createAccount"): void;
 }
 
 const emit = defineEmits<Emit>();

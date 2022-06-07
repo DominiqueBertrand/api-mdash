@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { watch } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { watch } from "vue";
+import { useI18n } from "vue-i18n";
 const { availableLocales, locale } = useI18n<string[]>();
 
 watch(locale, (newLocale) => {
@@ -50,7 +50,7 @@ select {
 
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     top: 50%;
     transform: translateY(-50%);
     right: 1rem;

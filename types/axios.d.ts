@@ -1,4 +1,4 @@
-export type ErrorMessageMode = 'none' | 'modal' | 'message' | undefined;
+export type ErrorMessageMode = "none" | "modal" | "message" | undefined;
 
 export interface RequestOptions {
   // Splicing request parameters to url
@@ -34,7 +34,7 @@ export interface RetryRequest {
 }
 export interface Result<T = any> {
   code: number;
-  type: 'success' | 'error' | 'warning';
+  type: "success" | "error" | "warning";
   message: string;
   result: T;
 }

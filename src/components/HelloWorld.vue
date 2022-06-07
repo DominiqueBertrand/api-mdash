@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import BasicButton from '@/stories/BasicButton.vue';
-import { computed, ref } from 'vue';
-import { useI18n } from 'vue-i18n';
+import BasicButton from "@/stories/BasicButton.vue";
+import { computed, ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 defineProps<{ msg: string }>();
 
@@ -13,7 +13,7 @@ const { t } = useI18n();
 <template>
   <h1>{{ msg }}</h1>
   <p>
-    {{ t('setup') }}
+    {{ t("setup") }}
     <a href="https://code.visualstudio.com/">VSCode</a>
     +
     <a href="https://github.com/johnsoncodehk/volar">Volar</a>
@@ -22,11 +22,11 @@ const { t } = useI18n();
   </p>
 
   <p>
-    {{ t('see-readme.see') }} <code>README.md</code>
-    {{ t('see-readme.more-info') }}
+    {{ t("see-readme.see") }} <code>README.md</code>
+    {{ t("see-readme.more-info") }}
   </p>
 
-  <h2>{{ t('docs') }}</h2>
+  <h2>{{ t("docs") }}</h2>
   <p>
     <a href="https://vitejs.dev/guide/features.html"> Vite </a>
     |
@@ -41,19 +41,19 @@ const { t } = useI18n();
     <a href="https://prettier.io/docs/en/index.html"> Prettier </a>
   </p>
 
-  <h3>{{ t('check-reactivity') }}</h3>
+  <h3>{{ t("check-reactivity") }}</h3>
 
   <basic-button size="small" type="button" @click="count++" :label="t('count', { count })">
   </basic-button>
   <p>
-    {{ t('hmr.edit') }}
+    {{ t("hmr.edit") }}
     <code>components/HelloWorld.vue</code>
-    {{ t('hmr.test') }}
+    {{ t("hmr.test") }}
   </p>
 </template>
 
 <style lang="scss" scoped>
-@use '@/styles/functions/color' as *;
+@use "@/styles/functions/color" as *;
 
 label {
   margin: 0 0.5em;

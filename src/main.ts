@@ -1,7 +1,7 @@
 // import messages from "@intlify/vite-plugin-vue-i18n/messages";
 import { createApp } from "vue";
 import { setupI18n } from "@/locales/";
-import { setupErrorHandle } from '@/logics/error-handle';
+import { setupErrorHandle } from "@/logics/error-handle";
 // import { createI18n } from "vue-i18n";
 import App from "./App.vue";
 

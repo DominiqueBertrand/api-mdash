@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import BasicButton from './BasicButton.vue';
-import './header.css';
+import BasicButton from "./BasicButton.vue";
+import "./header.css";
 
 interface Props {
   user: Record<string, unknown>;
 }
 
 interface Emit {
-  (e: 'login'): void;
-  (e: 'logout'): void;
-  (e: 'createAccount'): void;
+  (e: "login"): void;
+  (e: "logout"): void;
+  (e: "createAccount"): void;
 }
 
 const props = defineProps<Props>();
