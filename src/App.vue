@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-import HelloWorld from "./components/HelloWorld.vue";
-import LocaleSelect from "./components/LocaleSelect.vue";
-import links from "@/data/links.json";
+import { useI18n } from 'vue-i18n';
+import HelloWorld from './components/HelloWorld.vue';
+import LocaleSelect from './components/LocaleSelect.vue';
+import links from '@/data/links.json';
 
 const { t } = useI18n();
 
@@ -20,7 +20,7 @@ const getImgURL = (src: string) => {
 </template>
 
 <style lang="scss">
-@use "@/styles/functions/color" as *;
+@use '@/styles/functions/color' as *;
 
 body {
   background-color: color(light);
@@ -39,7 +39,7 @@ body {
 </style>
 
 <style lang="scss" scoped>
-@use "@/styles/functions/color" as *;
+@use '@/styles/functions/color' as *;
 
 .logo {
   height: 56px;

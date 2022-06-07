@@ -1,54 +1,54 @@
-import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
-import Home from "@/components/Home.vue";
-import Login from "@/components/Login.vue";
-import Register from "@/components/Register.vue";
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
+import Home from '@/components/Home.vue';
+import Login from '@/components/Login.vue';
+import Register from '@/components/Register.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
-    name: "home",
+    path: '/',
+    name: 'home',
     component: Home,
   },
   {
-    path: "/home",
+    path: '/home',
     component: Home,
   },
   {
-    path: "/login",
+    path: '/login',
     component: Login,
   },
   {
-    path: "/register",
+    path: '/register',
     component: Register,
   },
   {
-    path: "/profile",
-    name: "profile",
+    path: '/profile',
+    name: 'profile',
     // lazy-loaded
-    component: () => import("./components/Profile.vue"),
+    component: () => import('./components/Profile.vue'),
   },
   {
-    path: "/admin",
-    name: "admin",
-    component: () => import("./components/BoardAdmin.vue"),
+    path: '/admin',
+    name: 'admin',
+    component: () => import('./components/BoardAdmin.vue'),
   },
   {
-    path: "/mod",
-    name: "moderator",
-    component: () => import("./components/BoardModerator.vue"),
+    path: '/mod',
+    name: 'moderator',
+    component: () => import('./components/BoardModerator.vue'),
   },
   {
-    path: "/user",
-    name: "user",
-    component: () => import("./components/BoardUser.vue"),
+    path: '/user',
+    name: 'user',
+    component: () => import('./components/BoardUser.vue'),
   },
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   routes,
 });

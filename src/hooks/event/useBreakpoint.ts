@@ -1,6 +1,6 @@
-import { ref, computed, ComputedRef, unref } from "vue";
-import { useEventListener } from "@/hooks/event/useEventListener";
-import { screenMap, sizeEnum, screenEnum } from "@/enums/breakpointEnum";
+import { ref, computed, ComputedRef, unref } from 'vue';
+import { useEventListener } from '@/hooks/event/useEventListener';
+import { screenMap, sizeEnum, screenEnum } from '@/enums/breakpointEnum';
 
 let globalScreenRef: ComputedRef<sizeEnum | undefined>;
 let globalWidthRef: ComputedRef<number>;
@@ -54,7 +54,7 @@ export function createBreakpointListen(fn?: (opt: CreateCallbackParams) => void)
 
   useEventListener({
     el: window,
-    name: "resize",
+    name: 'resize',
 
     listener: () => {
       getWindowWidth();

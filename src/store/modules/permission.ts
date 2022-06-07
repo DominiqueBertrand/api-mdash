@@ -1,28 +1,28 @@
-import type { AppRouteRecordRaw, Menu } from "@/router/types";
+import type { AppRouteRecordRaw, Menu } from '@/router/types';
 
-import { defineStore } from "pinia";
-import { store } from "@/store";
-import { useI18n } from "@/hooks/web/useI18n";
-import { useUserStore } from "./user";
-import { useAppStoreWithOut } from "./app";
-import { toRaw } from "vue";
-import { transformObjToRoute, flatMultiLevelRoutes } from "@/router/helper/routeHelper";
-import { transformRouteToMenu } from "@/router/helper/menuHelper";
+import { defineStore } from 'pinia';
+import { store } from '@/store';
+import { useI18n } from '@/hooks/web/useI18n';
+import { useUserStore } from './user';
+import { useAppStoreWithOut } from './app';
+import { toRaw } from 'vue';
+import { transformObjToRoute, flatMultiLevelRoutes } from '@/router/helper/routeHelper';
+import { transformRouteToMenu } from '@/router/helper/menuHelper';
 
-import projectSetting from "@/settings/projectSetting";
+import projectSetting from '@/settings/projectSetting';
 
-import { PermissionModeEnum } from "@/enums/appEnum";
+import { PermissionModeEnum } from '@/enums/appEnum';
 
-import { asyncRoutes } from "@/router/routes";
-import { ERROR_LOG_ROUTE, PAGE_NOT_FOUND_ROUTE } from "@/router/routes/basic";
+import { asyncRoutes } from '@/router/routes';
+import { ERROR_LOG_ROUTE, PAGE_NOT_FOUND_ROUTE } from '@/router/routes/basic';
 
-import { filter } from "@/utils/helper/treeHelper";
+import { filter } from '@/utils/helper/treeHelper';
 
-import { getMenuList } from "@/api/sys/menu";
-import { getPermCode } from "@/api/sys/user";
+import { getMenuList } from '@/api/sys/menu';
+import { getPermCode } from '@/api/sys/user';
 
-import { useMessage } from "@/hooks/web/useMessage";
-import { PageEnum } from "@/enums/pageEnum";
+import { useMessage } from '@/hooks/web/useMessage';
+import { PageEnum } from '@/enums/pageEnum';
 
 interface PermissionState {
   // Permission code list
@@ -36,7 +36,7 @@ interface PermissionState {
   frontMenuList: Menu[];
 }
 export const usePermissionStore = defineStore({
-  id: "app-permission",
+  id: 'app-permission',
   state: (): PermissionState => ({
     permCodeList: [],
     // Whether the route has been dynamically added
@@ -124,17 +124,17 @@ export const usePermissionStore = defineStore({
       const patchHomeAffix = (routes: AppRouteRecordRaw[]) => {
         if (!routes || routes.length === 0) return;
         let homePath: string = userStore.getUserInfo.homePath || PageEnum.BASE_HOME;
-        function patcher(routes: AppRouteRecordRaw[], parentPath = "") {
-          if (parentPath) parentPath = parentPath + "/";
+        function patcher(routes: AppRouteRecordRaw[], parentPath = '') {
+          if (parentPath) parentPath = parentPath + '/';
           routes.forEach((route: AppRouteRecordRaw) => {
             const { path, children, redirect } = route;
-            const currentPath = path.startsWith("/") ? path : parentPath + path;
+            const currentPath = path.startsWith('/') ? path : parentPath + path;
             if (currentPath === homePath) {
               if (redirect) {
                 homePath = route.redirect! as string;
               } else {
                 route.meta = Object.assign({}, route.meta, { affix: true });
-                throw new Error("end");
+                throw new Error('end');
               }
             }
             children && children.length > 0 && patcher(children, currentPath);
@@ -176,7 +176,7 @@ export const usePermissionStore = defineStore({
           const { createMessage } = useMessage();
 
           createMessage.loading({
-            content: t("sys.app.menuLoading"),
+            content: t('sys.app.menuLoading'),
             duration: 1,
           });
 

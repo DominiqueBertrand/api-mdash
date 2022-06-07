@@ -1,28 +1,28 @@
-import type { AppRouteModule, AppRouteRecordRaw } from "@/router/types";
-import type { Router, RouteRecordNormalized } from "vue-router";
+import type { AppRouteModule, AppRouteRecordRaw } from '@/router/types';
+import type { Router, RouteRecordNormalized } from 'vue-router';
 
-import { getParentLayout, LAYOUT, EXCEPTION_COMPONENT } from "@/router/constant";
-import { cloneDeep, omit } from "lodash-es";
-import { warn } from "@/utils/log";
-import { createRouter, createWebHashHistory } from "vue-router";
+import { getParentLayout, LAYOUT, EXCEPTION_COMPONENT } from '@/router/constant';
+import { cloneDeep, omit } from 'lodash-es';
+import { warn } from '@/utils/log';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
-export type LayoutMapKey = "LAYOUT";
-const IFRAME = () => import("@/views/sys/iframe/FrameBlank.vue");
+export type LayoutMapKey = 'LAYOUT';
+const IFRAME = () => import('@/views/sys/iframe/FrameBlank.vue');
 
-const LayoutMap = new Map<string, () => Promise<typeof import("*.vue")>>();
+const LayoutMap = new Map<string, () => Promise<typeof import('*.vue')>>();
 
-LayoutMap.set("LAYOUT", LAYOUT);
-LayoutMap.set("IFRAME", IFRAME);
+LayoutMap.set('LAYOUT', LAYOUT);
+LayoutMap.set('IFRAME', IFRAME);
 
 let dynamicViewsModules: Record<string, () => Promise<Recordable>>;
 
 // Dynamic introduction
 function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
-  dynamicViewsModules = dynamicViewsModules || import.meta.glob("../../views/**/*.{vue,tsx}");
+  dynamicViewsModules = dynamicViewsModules || import.meta.glob('../../views/**/*.{vue,tsx}');
   if (!routes) return;
   routes.forEach((item) => {
     if (!item.component && item.meta?.frameSrc) {
-      item.component = "IFRAME";
+      item.component = 'IFRAME';
     }
     const { component, name } = item;
     const { children } = item;
@@ -42,15 +42,15 @@ function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
 
 function dynamicImport(
   dynamicViewsModules: Record<string, () => Promise<Recordable>>,
-  component: string
+  component: string,
 ) {
   const keys = Object.keys(dynamicViewsModules);
   const matchKeys = keys.filter((key) => {
-    const k = key.replace("../../views", "");
-    const startFlag = component.startsWith("/");
-    const endFlag = component.endsWith(".vue") || component.endsWith(".tsx");
+    const k = key.replace('../../views', '');
+    const startFlag = component.startsWith('/');
+    const endFlag = component.endsWith('.vue') || component.endsWith('.tsx');
     const startIndex = startFlag ? 0 : 1;
-    const lastIndex = endFlag ? k.length : k.lastIndexOf(".");
+    const lastIndex = endFlag ? k.length : k.lastIndexOf('.');
     return k.substring(startIndex, lastIndex) === component;
   });
   if (matchKeys?.length === 1) {
@@ -58,11 +58,11 @@ function dynamicImport(
     return dynamicViewsModules[matchKey];
   } else if (matchKeys?.length > 1) {
     warn(
-      "Please do not create `.vue` and `.TSX` files with the same file name in the same hierarchical directory under the views folder. This will cause dynamic introduction failure"
+      'Please do not create `.vue` and `.TSX` files with the same file name in the same hierarchical directory under the views folder. This will cause dynamic introduction failure',
     );
     return;
   } else {
-    warn("在src/views/下找不到`" + component + ".vue` 或 `" + component + ".tsx`, 请自行创建!");
+    warn('在src/views/下找不到`' + component + '.vue` 或 `' + component + '.tsx`, 请自行创建!');
     return EXCEPTION_COMPONENT;
   }
 }
@@ -72,20 +72,20 @@ export function transformObjToRoute<T = AppRouteModule>(routeList: AppRouteModul
   routeList.forEach((route) => {
     const component = route.component as string;
     if (component) {
-      if (component.toUpperCase() === "LAYOUT") {
+      if (component.toUpperCase() === 'LAYOUT') {
         route.component = LayoutMap.get(component.toUpperCase());
       } else {
         route.children = [cloneDeep(route)];
         route.component = LAYOUT;
         route.name = `${route.name}Parent`;
-        route.path = "";
+        route.path = '';
         const meta = route.meta || {};
         meta.single = true;
         meta.affix = false;
         route.meta = meta;
       }
     } else {
-      warn("请正确配置路由：" + route?.name + "的component属性");
+      warn('请正确配置路由：' + route?.name + '的component属性');
     }
     route.children && asyncImportRoute(route.children);
   });
@@ -119,14 +119,14 @@ function promoteRouteLevel(routeModule: AppRouteModule) {
   addToChildren(routes, routeModule.children || [], routeModule);
   router = null;
 
-  routeModule.children = routeModule.children?.map((item) => omit(item, "children"));
+  routeModule.children = routeModule.children?.map((item) => omit(item, 'children'));
 }
 
 // Add all sub-routes to the secondary route
 function addToChildren(
   routes: RouteRecordNormalized[],
   children: AppRouteRecordRaw[],
-  routeModule: AppRouteModule
+  routeModule: AppRouteModule,
 ) {
   for (let index = 0; index < children.length; index++) {
     const child = children[index];
@@ -146,7 +146,7 @@ function addToChildren(
 
 // Determine whether the level exceeds 2 levels
 function isMultipleRoute(routeModule: AppRouteModule) {
-  if (!routeModule || !Reflect.has(routeModule, "children") || !routeModule.children?.length) {
+  if (!routeModule || !Reflect.has(routeModule, 'children') || !routeModule.children?.length) {
     return false;
   }
 

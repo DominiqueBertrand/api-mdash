@@ -1,9 +1,9 @@
 // import messages from "@intlify/vite-plugin-vue-i18n/messages";
-import { createApp } from "vue";
-import { setupI18n } from "@/locales/";
-import { setupErrorHandle } from "@/logics/error-handle";
+import { createApp } from 'vue';
+import { setupI18n } from '@/locales/';
+import { setupErrorHandle } from '@/logics/error-handle';
 // import { createI18n } from "vue-i18n";
-import App from "./App.vue";
+import App from './App.vue';
 
 // const i18n = createI18n({
 //   locale: localStorage.locale || "en",
@@ -23,7 +23,7 @@ async function bootstrap() {
   // https://next.router.vuejs.org/api/#isready
   // await router.isReady();
 
-  app.mount("#app");
+  app.mount('#app');
 }
 
 bootstrap();

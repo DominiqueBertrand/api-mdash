@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { Size } from "#/Size";
-import { computed } from "vue";
+import { Size } from '#/Size';
+import { computed } from 'vue';
 
 interface Props {
   label: string;
@@ -16,7 +16,7 @@ interface Props {
 }
 
 interface Emits {
-  (e: "click"): void;
+  (e: 'click'): void;
 }
 
 const props = withDefaults(defineProps<Props>(), { primary: false });
@@ -24,14 +24,14 @@ const props = withDefaults(defineProps<Props>(), { primary: false });
 const emit = defineEmits<Emits>();
 
 const onClick = () => {
-  emit("click");
+  emit('click');
 };
 
 const classes = computed(() => ({
-  "storybook-button": true,
-  "storybook-button--primary": props.primary,
-  "storybook-button--secondary": !props.primary,
-  [`storybook-button--${props.size || "medium"}`]: true,
+  'storybook-button': true,
+  'storybook-button--primary': props.primary,
+  'storybook-button--secondary': !props.primary,
+  [`storybook-button--${props.size || 'medium'}`]: true,
 }));
 
 const style = computed(() => ({
@@ -40,10 +40,10 @@ const style = computed(() => ({
 </script>
 
 <style lang="scss" scoped>
-@use "@/styles/functions/color" as *;
+@use '@/styles/functions/color' as *;
 
 .storybook-button {
-  font-family: "Overpass", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Overpass', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   border: 0;
   border-radius: 3em;

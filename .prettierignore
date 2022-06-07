@@ -1,0 +1,7 @@
+# Ignore artifacts:
+dist
+examples
+storybook-static
+
+# Ignore all HTML files:
+*.html
