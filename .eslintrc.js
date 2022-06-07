@@ -26,5 +26,7 @@ module.exports = {
         printWidth: 100,
       },
     ],
+    'comma-dangle': 'off',
+    '@typescript-eslint/comma-dangle': ['error', 'only-multiline'],
   },
 };
